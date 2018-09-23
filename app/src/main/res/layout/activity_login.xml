@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    android:layout_margin="@dimen/default_margin_dimen"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_normal"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etForUserName"
+            android:hint="Enter User name"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:inputType="textPersonName"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etForPwd"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/btnForSignin"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_normal"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:text="Sign in"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+</RelativeLayout>

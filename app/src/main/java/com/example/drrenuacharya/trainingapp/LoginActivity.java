@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
           etForPwd =findViewById(R.id.etForPwd);
         Button btnForSignin=findViewById(R.id.btnForSignin);
         btnForSignin.setOnClickListener(this);
+        findViewById(R.id.tvForSignUp).setOnClickListener(this);
 //        btnForSignin.setOnClickListener(new View.OnClickListener() { //local scoped interface implementation that creates anonymous interfaceobject and passes to setonclickListner
 //            @Override
 //            public void onClick(View v) {
@@ -71,6 +72,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 finish();// this will destroy the activity
             }else
                 Toast.makeText(this,"Username and password mismatch",Toast.LENGTH_SHORT).show();
+        }else if (v.getId()==R.id.tvForSignUp){
+            startActivity(new Intent(this,SignUpActivity.class));
         }
 
     }

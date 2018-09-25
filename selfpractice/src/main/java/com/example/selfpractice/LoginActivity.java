@@ -14,6 +14,9 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText userName, password;
     Button userLoginBtn;
+    int counter;//variable
+    float attendancePercentage;
+    static int counter2;
 
 
     @Override

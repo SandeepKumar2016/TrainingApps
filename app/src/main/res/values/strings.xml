@@ -9,4 +9,9 @@
     <string name="action_settings">Settings</string>
 
     <string name="action_share">Share</string>
+    <string name="logout_text">logout</string>
+    <string name="text_signup_info"><u>If new User please Sign Up</u></string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="texthint_username">Enter UserName</string>
+    <string name="texthint_password">Enter Password</string>
 </resources>

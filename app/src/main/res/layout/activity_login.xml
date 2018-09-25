@@ -11,6 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
+    android:id="@+id/cv_login_container"
     android:layout_margin="@dimen/default_margin_dimen"
     >
     <LinearLayout
@@ -48,4 +49,14 @@
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvForSignUp"
+        android:layout_below="@id/cv_login_container"
+android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/textsize_normal"
+        android:text="@string/text_signup_info"/>
 </RelativeLayout>

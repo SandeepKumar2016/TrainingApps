@@ -8,9 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity  {
 
     EditText userName, password;
     Button userLoginBtn;
@@ -27,6 +28,9 @@ public class LoginActivity extends AppCompatActivity {
         userName = findViewById(R.id.userName);
         password = findViewById(R.id.userPwd);
         userLoginBtn = findViewById(R.id.loginBtn);
+        TextView signupTxt = findViewById(R.id.signupTxt);
+
+
 
         userLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,8 +45,11 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, "username and password is incorrect", Toast.LENGTH_SHORT).show();
 
+                } if (v.getId()==R.id.signupTxt){
+                    startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
 
                 }
+
 
 
             }

@@ -7,4 +7,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="enter_username_signup_hintTxt">Enter UserName</string>
+    <string name="enter_password_signup_hintTxt">Enter Password</string>
+    <string name="re_enter_password_signup_hintTxt">Re Enter Password</string>
+    <string name="new_users_signup_here"><u>New users? Signup here!</u></string>
 </resources>

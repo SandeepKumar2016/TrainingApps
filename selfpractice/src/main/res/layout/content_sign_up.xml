@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".SignUpActivity"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_sign_up">
+
+    <EditText
+        android:id="@+id/etForUserNameAtsignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        android:hint="@string/enter_username_signup_hintTxt"/>
+
+    <EditText
+        android:id="@+id/etForPwdatSignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/enter_password_signup_hintTxt"/>
+
+    <EditText
+        android:id="@+id/etForReEnterPwdatSignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/re_enter_password_signup_hintTxt"/>
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:id="@+id/rGroupForGenderAtSignup"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rBtnForMaleGender"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:textSize="@dimen/textsize_normal"
+            android:text="male"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rBtnForFeMaleGender"
+            android:textSize="@dimen/textsize_normal"
+            android:text="female"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please Enter DOB"
+        android:padding="@dimen/margin_normal"
+        android:id="@+id/tvForDobAtSignup"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/btnForSignUp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginRight="@dimen/margin_normal"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:text="Sign Up"/>
+
+
+</LinearLayout>

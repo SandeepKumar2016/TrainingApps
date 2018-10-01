@@ -13,10 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/framlayout_container_at_main"
+        android:background="@color/colorAccent"
         ></FrameLayout>
     <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+
+
         android:layout_below="@id/framlayout_container_at_main"
     android:id="@+id/framlayout_container2_at_main"
     ></FrameLayout>

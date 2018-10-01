@@ -12,23 +12,22 @@
 
     <EditText
         android:id="@+id/etForUserNameAtsignup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+        style="@style/MyStyleForEditText"
         android:inputType="textPersonName"
         android:maxLines="1"
         android:hint="@string/texthint_username"/>
 
     <EditText
         android:id="@+id/etForPwdatSignup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/MyStyleForEditText"
         android:inputType="textPassword"
         android:hint="@string/texthint_password"/>
 
     <EditText
         android:id="@+id/etForReEnterPwdatSignup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/MyStyleForEditText"
+
         android:inputType="textPassword"
         android:hint="Re Enter Password"/>
 
@@ -46,6 +45,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/rBtnForMaleGender"
             android:layout_marginRight="@dimen/margin_normal"
+            android:checked="true"
             android:textSize="@dimen/textsize_normal"
             android:text="male"/>
         <RadioButton
@@ -58,8 +58,8 @@
     </RadioGroup>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/MyStyleForEditText"
+
         android:hint="Please Enter DOB"
         android:padding="@dimen/margin_normal"
         android:id="@+id/tvForDobAtSignup"/>

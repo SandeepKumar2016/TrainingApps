@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }else
                 Toast.makeText(this,"Username and password mismatch",Toast.LENGTH_SHORT).show();
         }else if (v.getId()==R.id.tvForSignUp){
+
             startActivity(new Intent(this,SignUpActivity.class));
         }
 

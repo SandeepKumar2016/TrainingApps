@@ -45,14 +45,18 @@ public class LoginActivity extends AppCompatActivity  {
                 } else {
                     Toast.makeText(LoginActivity.this, "username and password is incorrect", Toast.LENGTH_SHORT).show();
 
-                } if (v.getId()==R.id.signupTxt){
-                    startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-
                 }
 
 
 
             }
+        });
+        signupTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                     startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+
+             }
         });
     }
 

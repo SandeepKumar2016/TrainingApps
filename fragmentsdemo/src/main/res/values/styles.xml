@@ -17,21 +17,4 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="match_wrap">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="wrap_wrap">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="MyStyleForEditText" parent="match_wrap">
-        <item name="android:textSize">@dimen/textsize_normal</item>
-<item name="android:textColor">@color/text_color</item>
-        <item name="android:background">@drawable/edittext_bg</item>
-        <item name="android:layout_marginBottom">@dimen/margin_normal</item>
-    </style>
-
 </resources>

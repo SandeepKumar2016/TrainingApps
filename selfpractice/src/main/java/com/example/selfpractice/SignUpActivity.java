@@ -28,21 +28,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         TextView tvForCalendar = findViewById(R.id.tvForDobAtSignup);
         Button btnSignup = findViewById(R.id.btnForSignUp);
 
-        if(userNameAtSignup.getText().toString().length()==0){
-            Toast.makeText(this, "username is required", Toast.LENGTH_SHORT).show();
 
-        }
-        if(passwordAtSignup.getText().toString().length()==0){
-            Toast.makeText(this, "password is required", Toast.LENGTH_SHORT).show();
-
-        }
 
    }
 
     @Override
-    public void onClick(View v) {
-
-    }
+    public void onClick(View v) { }
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {

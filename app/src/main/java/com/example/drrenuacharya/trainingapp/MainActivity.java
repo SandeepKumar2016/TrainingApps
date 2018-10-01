@@ -77,7 +77,12 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }else if(id==R.id.action_share){
-            Toast.makeText(this,"Clicked Share option",Toast.LENGTH_SHORT).show();
+            Intent sendIntent = new Intent(); //sending implicit intetn of Action send
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+//            Toast.makeText(this,"Clicked Share option",Toast.LENGTH_SHORT).show();
             return true;
         }
 

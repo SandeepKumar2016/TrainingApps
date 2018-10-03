@@ -3,16 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".FIrstFragment">
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".FirstFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tvForUserNameAtFirstFrag"
+        android:padding="5dp"
+        android:layout_centerInParent="true"
+        android:background="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
-        android:textSize="25sp"
-        android:layout_centerInParent="true"
-        />
+        android:textSize="20sp"
+        android:text="@string/hello_blank_fragment" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/btnAtFirstFrag"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:text="Go to frag2"
+        android:layout_below="@id/tvForUserNameAtFirstFrag"/>
 
 </RelativeLayout>

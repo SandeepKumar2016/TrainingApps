@@ -1,9 +1,9 @@
 package com.example.selfpractice;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,12 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener ,FirstFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +27,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -45,14 +38,40 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View navHeaderView=  navigationView.getHeaderView(0);//getting the headerView of Navigation View
+        if(getIntent()!=null){
+            ( (TextView)navHeaderView.findViewById(R.id.navHeader_userName)).setText(getIntent().getStringExtra("usernamekey"));
+        }
 
-        View navHeaderView = navigationView.getHeaderView(0);
 
-        TextView nav_userName =  (TextView)navHeaderView.findViewById(R.id.navHeader_userName);
-        nav_userName.setText(getIntent().getStringExtra("UserName"));
+        String usernameAfterLogin="";
+        if(getIntent()!=null)
+            usernameAfterLogin=getIntent().getStringExtra(AppConstants.usernamekey);
+        Log.d("usernamekey------>>>>", usernameAfterLogin);
+
+//        TextView nav_userName =  (TextView)navHeaderView.findViewById(R.id.navHeader_userName);
+//        nav_userName.setText(usernameAfterLogin);
 
 
+
+        final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.add(R.id.framlayout_container_at_main,FirstFragment.newInstance(usernameAfterLogin,"value2"), FirstFragment.class.getSimpleName());
+        //3rd param is tag name just to identify this fragment using findFragmentBytag
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+        fragmentTransaction.commit();
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {//Activity is communicating to fragment by calling one of its functions by getting fragment object
+FirstFragment firstFragment= (FirstFragment) getSupportFragmentManager().findFragmentByTag(FirstFragment.class.getSimpleName());
+firstFragment.displayToastByActivity();
+            }
+        });
     }
+
 
     @Override
     public void onBackPressed() {
@@ -110,4 +129,17 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public void onButtonClick() {
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.replace(R.id.framlayout_container_at_main,FragmentSecond.newInstance("value1","value2"), FragmentSecond.class.getSimpleName());
+        //3rd param is tag name just to identify this fragment using findFragmentBytag
+fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+        fragmentTransaction.commit();
+
+    }
 }
+

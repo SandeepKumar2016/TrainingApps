@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-      View navHeaderView=  navigationView.getHeaderView(0);//getting the headerView of Navigation View
+       View navHeaderView=  navigationView.getHeaderView(0);//getting the headerView of Navigation View
         if(getIntent()!=null){
             ( (TextView)navHeaderView.findViewById(R.id.tv_title_at_navHeader)).setText(getIntent().getStringExtra("username"));
         }

@@ -72,9 +72,6 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-//        MainActivity activity = new MainActivity();
-//        String mydatafromActivity = activity.getmyData();
-
         return inflater.inflate(R.layout.fragment_first, container, false);
     }
 

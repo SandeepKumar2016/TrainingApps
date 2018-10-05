@@ -1,8 +1,10 @@
 package com.example.selfpractice;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
@@ -14,20 +16,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener ,FirstFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener ,FirstFragment.OnFragmentInteractionListener ,FragmentSecond.btnToThirdFrag_Listener {
+
+
+    //Button sign_out_button;
+    GoogleSignInClient mGoogleSignInClient;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //sign_out_button = findViewById(R.id.sign_out_button);
+
         setSupportActionBar(toolbar);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        //sign_out_button.setOnClickListener(this);
+
+
+
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -40,18 +63,20 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View navHeaderView=  navigationView.getHeaderView(0);//getting the headerView of Navigation View
         if(getIntent()!=null){
-            ( (TextView)navHeaderView.findViewById(R.id.navHeader_userName)).setText(getIntent().getStringExtra("usernamekey"));
+            ( (TextView)navHeaderView.findViewById(R.id.navHeader_userName)).setText(getIntent().getStringExtra(AppConstants.usernamekey));
         }
+// Configure sign-in to request the user's ID, email address, and basic
+// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestServerAuthCode("283739839662-be8r1mvv05vi2rr7aorj2obqnj076be4.apps.googleusercontent.com")
+                .build();
 
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         String usernameAfterLogin="";
         if(getIntent()!=null)
             usernameAfterLogin=getIntent().getStringExtra(AppConstants.usernamekey);
-        Log.d("usernamekey------>>>>", usernameAfterLogin);
-
-//        TextView nav_userName =  (TextView)navHeaderView.findViewById(R.id.navHeader_userName);
-//        nav_userName.setText(usernameAfterLogin);
-
 
 
         final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -70,6 +95,9 @@ FirstFragment firstFragment= (FirstFragment) getSupportFragmentManager().findFra
 firstFragment.displayToastByActivity();
             }
         });
+
+
+
     }
 
 
@@ -125,10 +153,20 @@ firstFragment.displayToastByActivity();
 
         }
 
+         else if (id == R.id.nav_signout){
+
+//            Intent nav_signout_Intent = new Intent(MainActivity.this, LoginActivity.class);
+//            nav_signout_Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//            startActivity(nav_signout_Intent);
+            signOut();
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     @Override
     public void onButtonClick() {
@@ -137,9 +175,54 @@ firstFragment.displayToastByActivity();
 
         fragmentTransaction.replace(R.id.framlayout_container_at_main,FragmentSecond.newInstance("value1","value2"), FragmentSecond.class.getSimpleName());
         //3rd param is tag name just to identify this fragment using findFragmentBytag
-fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
         fragmentTransaction.commit();
 
     }
+
+    @Override
+    public void btnClick_On_SecondFrag() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.replace(R.id.framlayout_container_at_main, FragThree.newInstance("value1","value2"), FragThree.class.getSimpleName());
+
+        fragmentTransaction.commit();
+    }
+
+
+
+//    GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);{
+//        if (acct != null){
+//            String personEmail = acct.getEmail();
+//            Log.d("email adress---->>>", personEmail);
+//
+//
+//
+//        }
+//    }
+
+
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//
+//            case R.id.sign_out_button:
+//                signOut();
+//                break;
+//        }
+//    }
+//
+    private void signOut() {
+
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Intent nav_signout_Intent = new Intent(MainActivity.this, LoginActivity.class);
+            nav_signout_Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(nav_signout_Intent);
+            }
+        });
+    }
+
 }
 

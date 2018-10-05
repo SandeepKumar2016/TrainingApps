@@ -59,4 +59,12 @@ android:layout_centerHorizontal="true"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/textsize_normal"
         android:text="@string/text_signup_info"/>
+
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_below="@id/tvForSignUp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

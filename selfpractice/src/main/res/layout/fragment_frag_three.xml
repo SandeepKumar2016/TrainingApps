@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/secondFragmentId"
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    android:background="#919090"
-    tools:context=".FragmentSecond">
+    android:background="@color/red"
+    tools:context=".FragThree">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/tvInSecondFrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="second fragment" />
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:text="Fragment Three" />
 
     <Button
+        android:id="@+id/btnAtThirdFrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="40dp"
-        android:id="@+id/btnAtSecondFrag"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:text="Go to frag3"
-        android:layout_below="@id/tvInSecondFrag"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:background="@color/red"
+        android:text="Go To Frag2" />
 
 </RelativeLayout>

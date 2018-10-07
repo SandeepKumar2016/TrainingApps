@@ -151,10 +151,7 @@ firstFragment.displayToastByActivity();
 
         } else if (id == R.id.nav_send) {
 
-        }
-
-         else if (id == R.id.nav_signout){
-
+        } else if (id == R.id.nav_signout){
 //            Intent nav_signout_Intent = new Intent(MainActivity.this, LoginActivity.class);
 //            nav_signout_Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //

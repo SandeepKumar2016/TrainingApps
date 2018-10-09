@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:padding="40dp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/BroadCast"
+        android:text="SendBroadcast"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:onClick="onBroadCastClicked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/Register"
+        android:text="Register"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:onClick="onRegClicked"
+        android:layout_below="@+id/BroadCast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/UnRegister"
+        android:text="Unregister"
+        android:onClick="onUnRegClicked"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnForConnectionCheck"
+        android:text="Check Connection"
+        android:onClick="CheckConn"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/UnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

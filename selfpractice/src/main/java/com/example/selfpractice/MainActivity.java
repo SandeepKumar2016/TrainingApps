@@ -1,6 +1,7 @@
 package com.example.selfpractice;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -188,27 +189,6 @@ firstFragment.displayToastByActivity();
 
 
 
-//    GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);{
-//        if (acct != null){
-//            String personEmail = acct.getEmail();
-//            Log.d("email adress---->>>", personEmail);
-//
-//
-//
-//        }
-//    }
-
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//
-//            case R.id.sign_out_button:
-//                signOut();
-//                break;
-//        }
-//    }
-//
     private void signOut() {
 
         mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
@@ -221,5 +201,60 @@ firstFragment.displayToastByActivity();
         });
     }
 
+    public void share(MenuItem item) {
+
+        Intent shareIntent = new Intent();
+
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "This is a subject");
+
+        startActivity(shareIntent);
+
+
+
+    }
+
+
+    public void sendSms(MenuItem item){
+        String mobilenumber = "12346556";  // The number on which you want to send SMS
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", mobilenumber, null)));
+
+    }
+
+    public void Email(MenuItem item) {
+
+        String[] addresses = {"harithamallavarapu@gmail.com", "sandeepcs2005@gmail.com"};
+
+        Intent emailIntent = new Intent();
+
+        emailIntent.setAction(Intent.ACTION_SENDTO);
+        emailIntent.setData(Uri.parse("mailto:")); //only email apps should handle this
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "sendindg a subject");
+
+        startActivity(emailIntent);
+
+
+
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -6,4 +6,29 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/share"
+        android:title="Sand Via"
+        android:onClick="share"
+
+        />
+
+    <item
+        android:title="Email Only"
+        android:id="@+id/Emailonly"
+        android:onClick="Email"
+
+        />
+
+    <item
+        android:title="Send SMS"
+        android:id="@+id/sendSms"
+        android:onClick="sendSms"
+
+        />
+
+
+
+
 </menu>

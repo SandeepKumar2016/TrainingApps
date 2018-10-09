@@ -1,1 +1,1 @@
-include ':app', ':selfpractice', ':fragmentsdemo', ':broadcastreceivers'
+include ':app', ':selfpractice', ':fragmentsdemo', ':broadcastreceivers', ':practicebroadcastreceivers', ':practicebroadcastreceivers2', ':servicesdemo'

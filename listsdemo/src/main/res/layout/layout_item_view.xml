@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#80beb8b8"
+android:layout_marginBottom="5dp"
+        android:padding="8dp"
+        android:layout_height="wrap_content">
+        <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/imgForProfilePic"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imgForProfilePic"
+        android:id="@+id/tvForStudentName"
+        android:text="asdf"
+        android:layout_marginBottom="20dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imgForProfilePic"
+        android:id="@+id/tvForStudentAddress"
+        android:text="asdfafds"
+        android:layout_below="@id/tvForStudentName"
+        android:layout_marginBottom="10dp"
+        android:textSize="16sp"/>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

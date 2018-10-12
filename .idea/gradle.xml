@@ -11,10 +11,12 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/broadcastreceivers" />
             <option value="$PROJECT_DIR$/fragmentsdemo" />
+            <option value="$PROJECT_DIR$/listsdemo" />
             <option value="$PROJECT_DIR$/practicebroadcastreceivers" />
             <option value="$PROJECT_DIR$/practicebroadcastreceivers2" />
             <option value="$PROJECT_DIR$/selfpractice" />
             <option value="$PROJECT_DIR$/servicesdemo" />
+            <option value="$PROJECT_DIR$/servicespractice" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

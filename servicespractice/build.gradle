@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.example.servicesdemo"
+        applicationId "com.example.servicespractice"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1

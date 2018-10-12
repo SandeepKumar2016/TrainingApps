@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ServicesDemo</string>
+    <string name="title_activity_bounded_service">BoundedServiceActivity</string>
 </resources>

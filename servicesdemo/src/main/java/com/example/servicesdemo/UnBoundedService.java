@@ -28,6 +28,7 @@ public class UnBoundedService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) { //this function will be called on every start of a service by one or more Actvities
         counterValue = intent.getIntExtra("counterValue", 0);
+        Log.d("countervalue;;>>>", String.valueOf(counterValue));
         printSeconds(counterValue);
         return super.onStartCommand(intent, flags, startId);
     }
@@ -39,8 +40,8 @@ public class UnBoundedService extends Service {
     }
 
     @Override
-    public void onDestroy() {
-        timerTask.cancel();
+    public void onDestroy() { //when stopservice() is caled by activity or stopself() is called by service itself
+         timerTask.cancel();
         Log.d("UnboundedSErvice", "service destroyed");
         super.onDestroy();
     }

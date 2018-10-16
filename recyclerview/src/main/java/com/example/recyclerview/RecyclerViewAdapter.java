@@ -17,19 +17,24 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private ArrayList<String> imageData = new ArrayList<>();
     private ArrayList<String> personNameData = new ArrayList<>();
     private ArrayList<String> addressData = new ArrayList<>();
 
     private Context mContext;
+    private onRecyclerItemClickedListener onRecyclerItemClickedListener;//this is to hold the interface implemented object by the class who implements our interface
 
     public RecyclerViewAdapter(Context mCotext, ArrayList<String> imageData, ArrayList<String> personNameData, ArrayList<String> addressData) {
         this.imageData = imageData;
         this.personNameData = personNameData;
         this.addressData = addressData;
         this.mContext = mCotext;
+    }
+
+    public void setOnRecyclerItemClickedListener(RecyclerViewAdapter.onRecyclerItemClickedListener onRecyclerItemClickedListener) {
+        this.onRecyclerItemClickedListener = onRecyclerItemClickedListener;
     }
 
     @NonNull
@@ -41,7 +46,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         MyViewHolder holder = new MyViewHolder(view);
 
-
         return holder;
     }
 
@@ -52,8 +56,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.d("TAG", "OnBindVewHolder is created");
 
         //First get the images
+       Glide.with(mContext).load(imageData.get(position)).into(holder.image);
 
-        Glide.with(mContext).asBitmap().load(imageData.get(position)).into(holder.image);
 
         holder.personName.setText(personNameData.get(position));
 
@@ -65,6 +69,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         //This method tells adapter that how list items are present in the list
         return imageData.size();
     }
+
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
@@ -80,7 +86,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
          personName = itemView.findViewById(R.id.nameOfPerson);
          addressofPerson = itemView.findViewById(R.id.addressOfPeroson);
 
-
+itemView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        onRecyclerItemClickedListener.onItemClicked(getAdapterPosition());
+    }
+});
         }
+    }
+
+    public interface onRecyclerItemClickedListener{
+        public void onItemClicked(int position);
     }
 }

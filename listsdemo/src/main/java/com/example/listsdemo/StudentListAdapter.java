@@ -33,6 +33,8 @@ ArrayList<Student> dataArrayList;
         holder.tvForAddress.setText(student.getAddress());
         holder.imgForProfilePic.setImageDrawable(ContextCompat.getDrawable(context,student.getProfilePic()));
 
+
+
     }
 
     @Override

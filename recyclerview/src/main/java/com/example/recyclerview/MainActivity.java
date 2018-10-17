@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
         prepareData();
         initRecyclerView();
+
         FloatingActionButton fabToAddItem=findViewById(R.id.fab);
         fabToAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +44,24 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
                arrayListgetAddress.add("Amsterdam");
                arrayListimageURLs.add(arrayListimageURLs.get(5));
                adapter.notifyItemInserted(arrayListPersonNames.size()-1);
+            }
+        });
+
+        FloatingActionButton fabTORemoveItem = findViewById(R.id.removeFab);
+
+        fabTORemoveItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                 recyclerView.scrollToPosition(arrayListPersonNames.size()-1);
+
+
+                //recyclerView.removeViewAt(arrayListPersonNames.size()-1);
+
+               // recyclerView.removeAllViewsInLayout();
+
+
+
             }
         });
 
@@ -94,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
        adapter = new RecyclerViewAdapter(this, arrayListimageURLs, arrayListPersonNames, arrayListgetAddress);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         adapter.setOnRecyclerItemClickedListener(this);
 
 

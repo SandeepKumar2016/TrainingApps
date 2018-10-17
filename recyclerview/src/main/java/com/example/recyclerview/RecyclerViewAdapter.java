@@ -86,12 +86,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
          personName = itemView.findViewById(R.id.nameOfPerson);
          addressofPerson = itemView.findViewById(R.id.addressOfPeroson);
 
-itemView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        onRecyclerItemClickedListener.onItemClicked(getAdapterPosition());
-    }
-});
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                    public void onClick(View v) {
+                            onRecyclerItemClickedListener.onItemClicked(getAdapterPosition());
+                    }
+                });
         }
     }
 

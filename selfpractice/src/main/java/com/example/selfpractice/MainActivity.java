@@ -28,12 +28,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener ,FirstFragment.OnFragmentInteractionListener ,FragmentSecond.btnToThirdFrag_Listener {
+        implements NavigationView.OnNavigationItemSelectedListener, FirstFragment.OnFragmentInteractionListener, FragmentSecond.btnToThirdFrag_Listener {
 
 
     //Button sign_out_button;
     GoogleSignInClient mGoogleSignInClient;
-
 
 
     @Override
@@ -50,10 +49,6 @@ public class MainActivity extends AppCompatActivity
         //sign_out_button.setOnClickListener(this);
 
 
-
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -62,9 +57,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View navHeaderView=  navigationView.getHeaderView(0);//getting the headerView of Navigation View
-        if(getIntent()!=null){
-            ( (TextView)navHeaderView.findViewById(R.id.navHeader_userName)).setText(getIntent().getStringExtra(AppConstants.usernamekey));
+        View navHeaderView = navigationView.getHeaderView(0);//getting the headerView of Navigation View
+        if (getIntent() != null) {
+            ((TextView) navHeaderView.findViewById(R.id.navHeader_userName)).setText(getIntent().getStringExtra(AppConstants.usernamekey));
         }
 // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -75,16 +70,16 @@ public class MainActivity extends AppCompatActivity
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        String usernameAfterLogin="";
-        if(getIntent()!=null)
-            usernameAfterLogin=getIntent().getStringExtra(AppConstants.usernamekey);
+        String usernameAfterLogin = "";
+        if (getIntent() != null)
+            usernameAfterLogin = getIntent().getStringExtra(AppConstants.usernamekey);
 
 
         final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-        fragmentTransaction.add(R.id.framlayout_container_at_main,FirstFragment.newInstance(usernameAfterLogin,"value2"), FirstFragment.class.getSimpleName());
+        fragmentTransaction.add(R.id.framlayout_container_at_main, FirstFragment.newInstance(usernameAfterLogin, "value2"), FirstFragment.class.getSimpleName());
         //3rd param is tag name just to identify this fragment using findFragmentBytag
-        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
         fragmentTransaction.commit();
 
@@ -92,11 +87,10 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {//Activity is communicating to fragment by calling one of its functions by getting fragment object
-FirstFragment firstFragment= (FirstFragment) getSupportFragmentManager().findFragmentByTag(FirstFragment.class.getSimpleName());
-firstFragment.displayToastByActivity();
+                FirstFragment firstFragment = (FirstFragment) getSupportFragmentManager().findFragmentByTag(FirstFragment.class.getSimpleName());
+                firstFragment.displayToastByActivity();
             }
         });
-
 
 
     }
@@ -152,7 +146,7 @@ firstFragment.displayToastByActivity();
 
         } else if (id == R.id.nav_send) {
 
-        } else if (id == R.id.nav_signout){
+        } else if (id == R.id.nav_signout) {
 //            Intent nav_signout_Intent = new Intent(MainActivity.this, LoginActivity.class);
 //            nav_signout_Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //
@@ -171,9 +165,9 @@ firstFragment.displayToastByActivity();
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-        fragmentTransaction.replace(R.id.framlayout_container_at_main,FragmentSecond.newInstance("value1","value2"), FragmentSecond.class.getSimpleName());
+        fragmentTransaction.replace(R.id.framlayout_container_at_main, FragmentSecond.newInstance("value1", "value2"), FragmentSecond.class.getSimpleName());
         //3rd param is tag name just to identify this fragment using findFragmentBytag
-        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         fragmentTransaction.commit();
 
     }
@@ -182,11 +176,10 @@ firstFragment.displayToastByActivity();
     public void btnClick_On_SecondFrag() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-        fragmentTransaction.replace(R.id.framlayout_container_at_main, FragThree.newInstance("value1","value2"), FragThree.class.getSimpleName());
+        fragmentTransaction.replace(R.id.framlayout_container_at_main, FragThree.newInstance("value1", "value2"), FragThree.class.getSimpleName());
 
         fragmentTransaction.commit();
     }
-
 
 
     private void signOut() {
@@ -195,8 +188,8 @@ firstFragment.displayToastByActivity();
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Intent nav_signout_Intent = new Intent(MainActivity.this, LoginActivity.class);
-            nav_signout_Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(nav_signout_Intent);
+                nav_signout_Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(nav_signout_Intent);
             }
         });
     }
@@ -212,11 +205,10 @@ firstFragment.displayToastByActivity();
         startActivity(shareIntent);
 
 
-
     }
 
 
-    public void sendSms(MenuItem item){
+    public void sendSms(MenuItem item) {
         String mobilenumber = "12346556";  // The number on which you want to send SMS
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", mobilenumber, null)));
 
@@ -234,8 +226,6 @@ firstFragment.displayToastByActivity();
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "sendindg a subject");
 
         startActivity(emailIntent);
-
-
 
 
     }

@@ -75,7 +75,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         CircleImageView image;
-        TextView personName;
+        TextView  personName;
         TextView addressofPerson;
         RelativeLayout parent_Layout;
 

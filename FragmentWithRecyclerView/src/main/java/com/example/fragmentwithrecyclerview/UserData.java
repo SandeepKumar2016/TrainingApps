@@ -2,8 +2,8 @@ package com.example.fragmentwithrecyclerview;
 
 public class UserData {
 
-    String userName, userCity;
-    int cityImage;
+    private String userName, userCity;
+    private int cityImage;
 
     public UserData(String userName, String userCity, int cityImage) {
         this.userName = userName;

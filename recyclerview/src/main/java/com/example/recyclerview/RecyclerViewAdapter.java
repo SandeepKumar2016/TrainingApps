@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -24,7 +25,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> addressData = new ArrayList<>();
 
     private Context mContext;
-    private onRecyclerItemClickedListener onRecyclerItemClickedListener;//this is to hold the interface implemented object by the class who implements our interface
+    private onRecyclerItemClickedListener myonRecyclerItemClickedListenerReference;//this is to hold the interface implemented object by the class who implements our interface
+
 
     public RecyclerViewAdapter(Context mCotext, ArrayList<String> imageData, ArrayList<String> personNameData, ArrayList<String> addressData) {
         this.imageData = imageData;
@@ -33,9 +35,42 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mContext = mCotext;
     }
 
-    public void setOnRecyclerItemClickedListener(RecyclerViewAdapter.onRecyclerItemClickedListener onRecyclerItemClickedListener) {
-        this.onRecyclerItemClickedListener = onRecyclerItemClickedListener;
+
+    public interface onRecyclerItemClickedListener{
+        public void onItemClicked(int position);
     }
+
+    public void setOnRecyclerItemClickedListener(RecyclerViewAdapter.onRecyclerItemClickedListener listener) {
+        myonRecyclerItemClickedListenerReference = listener;
+    }
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+
+        CircleImageView image;
+        TextView  personName;
+        TextView addressofPerson;
+        RelativeLayout parent_Layout;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+
+            image = itemView.findViewById(R.id.imageOfList);
+            personName = itemView.findViewById(R.id.nameOfPerson);
+            addressofPerson = itemView.findViewById(R.id.addressOfPeroson);
+            parent_Layout = itemView.findViewById(R.id.parent_Layout);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    myonRecyclerItemClickedListenerReference.onItemClicked(getAdapterPosition());
+                }
+            });
+        }
+    }
+
+
 
     @NonNull
     @Override
@@ -50,7 +85,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         //
 
         Log.d("TAG", "OnBindVewHolder is created");
@@ -62,6 +97,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.personName.setText(personNameData.get(position));
 
         holder.addressofPerson.setText(addressData.get(position));
+
+//        holder.parent_Layout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(mContext, personNameData.get(position), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override
@@ -72,30 +114,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        CircleImageView image;
-        TextView  personName;
-        TextView addressofPerson;
-        RelativeLayout parent_Layout;
 
-        public MyViewHolder(View itemView) {
-            super(itemView);
-
-         image = itemView.findViewById(R.id.imageOfList);
-         personName = itemView.findViewById(R.id.nameOfPerson);
-         addressofPerson = itemView.findViewById(R.id.addressOfPeroson);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                    public void onClick(View v) {
-                            onRecyclerItemClickedListener.onItemClicked(getAdapterPosition());
-                    }
-                });
-        }
-    }
-
-    public interface onRecyclerItemClickedListener{
-        public void onItemClicked(int position);
-    }
 }

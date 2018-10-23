@@ -20,6 +20,8 @@
             <option value="$PROJECT_DIR$/selfpractice" />
             <option value="$PROJECT_DIR$/servicesdemo" />
             <option value="$PROJECT_DIR$/servicespractice" />
+            <option value="$PROJECT_DIR$/tablayoutpractice" />
+            <option value="$PROJECT_DIR$/tablayoutwithviewpager" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

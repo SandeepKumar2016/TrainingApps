@@ -2,16 +2,12 @@ package com.example.fragmentwithrecyclerview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -21,16 +17,18 @@ public class AdapterForRecyclerView extends RecyclerView.Adapter<AdapterForRecyc
 
     ArrayList<UserData> userDataArrayList;
     Context mContext;
-    private onRecyclerItemClickedListener onRecyclerItemClikedListener;
+    private onRecyclerItemClickedListener onRecyclerItemClickListenerObjOfReceipent;
 
 
-    public AdapterForRecyclerView(FragmentActivity mContext, ArrayList<UserData> userDataArrayList) {
-        this.userDataArrayList = userDataArrayList;
+    public AdapterForRecyclerView(Context mContext, ArrayList<UserData> userDataArrayList) {
         this.mContext = mContext;
+        this.userDataArrayList = userDataArrayList;
+
     }
 
-    public void setOnRecyclerItemClickedListener(AdapterForRecyclerView.onRecyclerItemClickedListener onRecyclerItemClickedListener) {
-        this.onRecyclerItemClikedListener = onRecyclerItemClickedListener;
+
+    public void setOnRecyclerItemClickedListener(onRecyclerItemClickedListener onRecyclerItemClickedListener) {
+        this.onRecyclerItemClickListenerObjOfReceipent = onRecyclerItemClickedListener;
     }
 
 
@@ -83,19 +81,16 @@ public class AdapterForRecyclerView extends RecyclerView.Adapter<AdapterForRecyc
             cityName = itemView.findViewById(R.id.cityOfPeroson);
 
             itemView.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                onRecyclerItemClikedListener.onItemClicked(getAdapterPosition());
-                                            }
-                                        }
+                @Override
+                public void onClick(View v) {
+                    onRecyclerItemClickListenerObjOfReceipent.onItemClicked(getAdapterPosition());
+                    }
+            }
             );
         }
     }
 
 
-    interface onRecyclerItemClickedListener{
 
-        public void onItemClicked(int position);
-    }
 
 }

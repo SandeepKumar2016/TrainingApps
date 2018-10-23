@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TabLayoutWithViewPager</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <array name="tablayout_titles">
+        <item>Tab 1</item>
+        <item>Tab 2</item>
+        <item>Tab 3</item>
+    </array>
+</resources>

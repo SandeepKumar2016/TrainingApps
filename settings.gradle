@@ -1,1 +1,1 @@
-include ':app', ':selfpractice', ':fragmentsdemo', ':broadcastreceivers', ':practicebroadcastreceivers', ':practicebroadcastreceivers2', ':servicesdemo', ':servicespractice', ':listsdemo', ':recyclerview', ':recyclerpractice', ':FragmentWithRecyclerView'
+include ':app', ':selfpractice', ':fragmentsdemo', ':broadcastreceivers', ':practicebroadcastreceivers', ':practicebroadcastreceivers2', ':servicesdemo', ':servicespractice', ':listsdemo', ':recyclerview', ':recyclerpractice', ':FragmentWithRecyclerView', ':tablayoutwithviewpager', ':tablayoutpractice'

@@ -69,6 +69,6 @@ public class MainActivity extends AppCompatActivity implements cityAdapter.onRec
 
         nederalndsCities nederalndsCities = dataArrayList.get(position);
 
-        Toast.makeText(this, nederalndsCities.getPersonName() + "Lives in" + nederalndsCities.getCityName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, nederalndsCities.getPersonName() + " Lives in " + nederalndsCities.getCityName(), Toast.LENGTH_SHORT).show();
     }
 }

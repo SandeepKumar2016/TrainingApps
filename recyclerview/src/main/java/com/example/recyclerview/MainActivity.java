@@ -120,10 +120,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     }
 
 
-
-
     @Override
     public void onItemClicked(int position) {
         Toast.makeText(this, arrayListgetAddress.get(position) + " lives at "+arrayListPersonNames.get(position), Toast.LENGTH_SHORT).show();
+
+
     }
 }

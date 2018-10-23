@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * Use the {@link FragmentWithRecyclerView#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentWithRecyclerView extends Fragment implements AdapterForRecyclerView.onRecyclerItemClickedListener{
+public class FragmentWithRecyclerView extends Fragment implements onRecyclerItemClickedListener{
 
     public ArrayList<UserData> dataArrayList;
     RecyclerView recyclerView;
@@ -89,17 +89,19 @@ public class FragmentWithRecyclerView extends Fragment implements AdapterForRecy
 
         recyclerView.setHasFixedSize(true);
 
+        adapter = new AdapterForRecyclerView(mcontext, dataArrayList);
+
         recyclerView.setAdapter(adapter);
 
         adapter.setOnRecyclerItemClickedListener(this);
 
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
 
-        recyclerView.setAdapter(new AdapterForRecyclerView(getActivity(),dataArrayList));
-
         return rootView;
 
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -108,9 +110,11 @@ public class FragmentWithRecyclerView extends Fragment implements AdapterForRecy
         }
     }
 
+    private Context mcontext;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mcontext=context;
 //        if (context instanceof OnFragmentInteractionListener) {
 //            mListener = (OnFragmentInteractionListener) context;
 //        } else {
@@ -123,6 +127,15 @@ public class FragmentWithRecyclerView extends Fragment implements AdapterForRecy
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onItemClicked(int position) {
+
+        UserData userData = dataArrayList.get(position);
+
+        Toast.makeText(getContext(), userData.getUserName() + "Lives in" + userData.getUserCity(), Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -159,13 +172,7 @@ public class FragmentWithRecyclerView extends Fragment implements AdapterForRecy
 
     }
 
-    @Override
-    public void onItemClicked(int position) {
-        UserData userData = dataArrayList.get(position);
 
-
-
-    }
 
 
 

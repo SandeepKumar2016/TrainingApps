@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        adapter.setOnRecyclerItemClickedListener(this);
 
 
         final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

@@ -22,6 +22,8 @@
             <option value="$PROJECT_DIR$/servicespractice" />
             <option value="$PROJECT_DIR$/tablayoutpractice" />
             <option value="$PROJECT_DIR$/tablayoutwithviewpager" />
+            <option value="$PROJECT_DIR$/threads" />
+            <option value="$PROJECT_DIR$/threads_practice" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

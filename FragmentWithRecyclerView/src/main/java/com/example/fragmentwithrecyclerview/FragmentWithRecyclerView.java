@@ -1,6 +1,7 @@
 package com.example.fragmentwithrecyclerview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -134,7 +135,17 @@ public class FragmentWithRecyclerView extends Fragment implements onRecyclerItem
 
         UserData userData = dataArrayList.get(position);
 
-        Toast.makeText(getContext(), userData.getUserName() + "Lives in" + userData.getUserCity(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), userData.getUserName() + "Lives in" + userData.getUserCity(), Toast.LENGTH_SHORT).show();
+
+        Intent senddataToMainActivity = new Intent(getContext(), DisplayFullUserDetails.class);
+
+        senddataToMainActivity.putExtra("usernamekey", userData.getUserName());
+
+        startActivity(senddataToMainActivity);
+
+
+
+
 
     }
 

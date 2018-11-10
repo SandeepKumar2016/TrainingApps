@@ -71,4 +71,11 @@
         android:textSize="7pt"
         android:layout_below="@+id/btn_run"
         android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBArAtMain"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

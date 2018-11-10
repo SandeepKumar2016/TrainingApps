@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:id="@+id/myText"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="40dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Data come here"
+        />
+    <Button
+        android:id="@+id/parse"
+        android:layout_below="@+id/myText"
+        android:layout_marginTop="30dp"
+        android:text="Parse"
+        android:layout_centerInParent="true"
+
+
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/postApiCall"
+        android:layout_below="@+id/parse"
+        android:onClick="sendWorkPostRequest"
+        android:layout_marginTop="30dp"
+        android:text="Post Api Call"
+        android:layout_centerInParent="true"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

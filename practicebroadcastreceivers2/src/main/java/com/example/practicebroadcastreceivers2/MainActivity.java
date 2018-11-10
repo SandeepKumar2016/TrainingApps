@@ -65,20 +65,20 @@ public class MainActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(connCheck, connFilter);
 
         Toast.makeText(this, "Connection receiver is registered", Toast.LENGTH_SHORT).show();
-/*
+
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
         if (activeNetwork != null) {
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                Toast.makeText(this, "Cellular data is connected", Toast.LENGTH_SHORT).show();
-            }
-
-            if (activeNetwork.getType() != ConnectivityManager.TYPE_MOBILE) {
-                Toast.makeText(this, "Cellular data is disconnected", Toast.LENGTH_SHORT).show();
-            }
+//            if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+//                Toast.makeText(this, "Cellular data is connected", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            if (activeNetwork.getType() != ConnectivityManager.TYPE_MOBILE) {
+//                Toast.makeText(this, "Cellular data is disconnected", Toast.LENGTH_SHORT).show();
+//            }
 
             if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
                 Toast.makeText(this, "wifi is connected", Toast.LENGTH_SHORT).show();
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(activeNetwork == null){
             Toast.makeText(this, "There is no Network Connectivity:", Toast.LENGTH_SHORT).show();
-        }*/
+        }
 
         LocalBroadcastManager.getInstance(this).unregisterReceiver(connCheck);
         Toast.makeText(this,"unregistered Connection checker", Toast.LENGTH_SHORT).show();

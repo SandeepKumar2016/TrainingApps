@@ -42,12 +42,12 @@
           android:text="Signin"
           />
 
-        <TextView
-            android:id="@+id/signupTxt"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/new_users_signup_here"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <!--<TextView-->
+            <!--android:id="@+id/signupTxt"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:hint="@string/new_users_signup_here"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
 
     </LinearLayout>
 

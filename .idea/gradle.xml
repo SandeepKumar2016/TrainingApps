@@ -9,14 +9,19 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/FragmentWithRecyclerView" />
+            <option value="$PROJECT_DIR$/SharedPrefsAndFiles" />
+            <option value="$PROJECT_DIR$/apicall_practice" />
+            <option value="$PROJECT_DIR$/apiservicecalls" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/broadcastreceivers" />
+            <option value="$PROJECT_DIR$/codelab_tablayout" />
             <option value="$PROJECT_DIR$/fragmentsdemo" />
             <option value="$PROJECT_DIR$/listsdemo" />
             <option value="$PROJECT_DIR$/practicebroadcastreceivers" />
             <option value="$PROJECT_DIR$/practicebroadcastreceivers2" />
             <option value="$PROJECT_DIR$/recyclerpractice" />
             <option value="$PROJECT_DIR$/recyclerview" />
+            <option value="$PROJECT_DIR$/restapicalls" />
             <option value="$PROJECT_DIR$/selfpractice" />
             <option value="$PROJECT_DIR$/servicesdemo" />
             <option value="$PROJECT_DIR$/servicespractice" />

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NextActivity">
+
+
+    <TextView
+        android:id="@+id/txtNameNxt"
+        android:text="Name"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/editTxtNameNxt"
+        android:layout_below="@+id/txtNameNxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/txtPasswordNxt"
+        android:text="Password"
+        android:layout_below="@id/editTxtNameNxt"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <EditText
+        android:id="@+id/editTxtPasswordNxt"
+        android:layout_below="@+id/txtPasswordNxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/Load"
+        android:text="Load Data"
+        android:onClick="LoadData"
+        android:layout_below="@+id/editTxtPasswordNxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnNextAct"
+        android:text="Back To MainActivity"
+        android:onClick="BackToMainAct"
+        android:layout_below="@+id/editTxtPasswordNxt"
+        android:layout_marginLeft="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnCreateFile"
+        android:text="CreateFile"
+        android:onClick="CreateFile"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/btnNextAct"
+        android:layout_marginLeft="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+</RelativeLayout>

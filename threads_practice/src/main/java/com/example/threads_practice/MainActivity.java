@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     EditText timeinSeconds;
     Button btnAsync;
     TextView result;
+    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         btnAsync = findViewById(R.id.btn_run);
 
         result = findViewById(R.id.tv_result);
-
+progressBar=findViewById(R.id.progressBArAtMain);
         btnAsync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doingAsyncTask doingAsyncTaskone = new doingAsyncTask();
+                DoingAsyncTask doingAsyncTaskone = new DoingAsyncTask();
 
                 //In this tutorial we’ll implement an AsyncTask that makes a process to go to
                 // sleep for a given period of time as set by the user.
@@ -63,36 +65,42 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
+
                 textView.setText((CharSequence)msg.obj);
                 //Toast.makeText(MainActivity.this, (CharSequence) msg.obj, Toast.LENGTH_SHORT).show();
-
+//new Handler().postDelayed(new Runnable() {
+//    @Override
+//    public void run() {//posts this Runnable to calling Thread(here it is main thread)
+//
+//    }
+//},2000);
 
             }
         };
     }
 
-    public class doingAsyncTask extends AsyncTask<String, String, String>{
+    public class DoingAsyncTask extends AsyncTask<String, String, String>{
 
-        ProgressBar progressBar;
-        ProgressDialog progressDialog;
+//        ProgressDialog progressDialog;
 
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog = ProgressDialog.show(MainActivity.this,"progressDialog","some");
-
-
+//            progressDialog = ProgressDialog.show(MainActivity.this,"progressDialog","some");
+progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(String s) {//here resp comes
             super.onPostExecute(s);
 
             result.setText(s);
 
-            progressDialog.dismiss();
+//            progressDialog.dismiss();
+            progressBar.setVisibility(View.GONE);
+
         }
 
         @Override
@@ -116,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            return resp;
+            return resp;//this resp goes to onpostexecute as string
         }
     }
 

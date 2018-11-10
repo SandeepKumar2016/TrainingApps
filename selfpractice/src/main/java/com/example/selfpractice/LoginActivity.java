@@ -2,6 +2,7 @@ package com.example.selfpractice;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,9 +26,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     EditText userName, password;
     Button userLoginBtn;
-    private final int RC_SIGN_IN=100;
-    private final String TAG=LoginActivity.class.getSimpleName();
+    private final int RC_SIGN_IN = 100;
+    private final String TAG = LoginActivity.class.getSimpleName();
     GoogleSignInClient mGoogleSignInClient;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -38,10 +40,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         userName = findViewById(R.id.userName);
         password = findViewById(R.id.userPwd);
         userLoginBtn = findViewById(R.id.loginBtn);
-        TextView signupTxt = findViewById(R.id.signupTxt);
+        //TextView signupTxt = findViewById(R.id.signupTxt);
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE); //initii;lized sharedpref with name "Mypref"
 
+        if (sharedPreferences.getBoolean(AppConstants.isLoggedIn, false)) { //if already loggedin lets goto MainActiovity skipping loginActivity
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra(AppConstants.usernamekey, sharedPreferences.getString(AppConstants.usernamekey, ""));
+            startActivity(intent);
+            finish();
+        }
 
         userLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +60,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "clicked", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra(AppConstants.usernamekey, userName.getText().toString());
+
+                    //--getting editor object to save sharedprefs
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(AppConstants.isLoggedIn, true);
+                    editor.putString(AppConstants.usernamekey, userName.getText().toString());
+                    editor.commit(); //then prefs got saved
+
                     startActivity(intent);
                     finish();
                 } else {
@@ -58,13 +74,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         });
-        signupTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                     startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-
-             }
-        });
+//        signupTxt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+//
+//            }
+//        });
 
 
         // Configure sign-in to request the user's ID, email address, and basic
@@ -75,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .build();
 
         // Build a GoogleSignInClient with the options specified by gso.
-         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
     }
 
@@ -93,12 +109,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void updateUI(GoogleSignInAccount account) {
 
-        if(account==null)
+        if (account == null)
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-         else {
+        else {
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             Intent gotoMainActivityIntent = new Intent(this, MainActivity.class);
-            gotoMainActivityIntent.putExtra(AppConstants.usernamekey,account.getDisplayName());
+            gotoMainActivityIntent.putExtra(AppConstants.usernamekey, account.getDisplayName());
             startActivity(gotoMainActivityIntent);
             finish();
 
@@ -113,8 +129,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 signIn();
                 break;
 
+        }
     }
-}
 
 
     private void signIn() {
@@ -136,9 +152,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "Google signin is Sussfull", Toast.LENGTH_SHORT).show();
 
 
-
-        }
-        else {
+        } else {
             Toast.makeText(this, "Google signin failed. please try agian", Toast.LENGTH_SHORT).show();
         }
     }

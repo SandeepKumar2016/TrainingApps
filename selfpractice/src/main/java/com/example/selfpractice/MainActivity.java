@@ -1,6 +1,7 @@
 package com.example.selfpractice;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FirstFragment.OnFragmentInteractionListener, FragmentSecond.btnToThirdFrag_Listener {
 
 
+    SharedPreferences sharedPreferences;
     //Button sign_out_button;
     GoogleSignInClient mGoogleSignInClient;
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        sharedPreferences = getSharedPreferences("MyPrefs",MODE_PRIVATE);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -147,7 +150,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_signout) {
+
 //            Intent nav_signout_Intent = new Intent(MainActivity.this, LoginActivity.class);
+//
 //            nav_signout_Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //
 //            startActivity(nav_signout_Intent);
@@ -182,7 +187,14 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void signOut() {
+    private void signOut(){
+
+        // TODO: 29/10/2018  uncomment below lines for manual login after checking mGoogleSignInClient behaviour
+
+        sharedPreferences.edit().clear().commit();
+        Intent nav_signout_Intent = new Intent(MainActivity.this, LoginActivity.class);
+        nav_signout_Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(nav_signout_Intent);
 
         mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
             @Override
@@ -190,6 +202,7 @@ public class MainActivity extends AppCompatActivity
                 Intent nav_signout_Intent = new Intent(MainActivity.this, LoginActivity.class);
                 nav_signout_Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(nav_signout_Intent);
+                finish();
             }
         });
     }

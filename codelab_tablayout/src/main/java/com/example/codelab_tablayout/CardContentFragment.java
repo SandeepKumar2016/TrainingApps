@@ -1,14 +1,22 @@
 package com.example.codelab_tablayout;
 
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -29,43 +37,77 @@ public class CardContentFragment extends Fragment {
 //        return inflater.inflate(R.layout.item_card, container, false);
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
 
-        TIleContentFragment.ContentAdapter adapter = new TIleContentFragment.ContentAdapter();
+        ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
 
         recyclerView.setAdapter(adapter);
 
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
         //return inflater.inflate(R.layout.item_tile, container, false);
 
         return recyclerView;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+        public ImageView picture;
+        public TextView name, description;
+        public Button btnAction;
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_card, parent, false));
+
+            picture = itemView.findViewById(R.id.card_image);
+            name = itemView.findViewById(R.id.card_title);
+            description = itemView.findViewById(R.id.card_text);
+            btnAction = itemView.findViewById(R.id.action_button);
+
+            btnAction.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Snackbar.make(v, "Action Button is pressed", Snackbar.LENGTH_LONG).show();
+                }
+            });
         }
     }
 
-    public static class ContentAdapter extends RecyclerView.Adapter<TIleContentFragment.ViewHolder>{
+    public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         // Set numbers of List in RecyclerView.
         private static final int LENGTH = 18;
+        private final String[] mPlaces;
+        private final String[] mPlaceDesc;
+        private final Drawable[] mPlacePictures;
 
-        public ContentAdapter() {
+        public ContentAdapter(Context context) {
+
+            Resources resources = context.getResources();
+            mPlaces = resources.getStringArray(R.array.places);
+            mPlaceDesc = resources.getStringArray(R.array.place_desc);
+
+            TypedArray a = resources.obtainTypedArray(R.array.places_picture);//used glide for images
+            mPlacePictures = new Drawable[a.length()];
+            for (int i = 0; i < mPlacePictures.length; i++) {
+                mPlacePictures[i] = a.getDrawable(i);
+            }
+            a.recycle();
+
         }
 
         @NonNull
         @Override
-        public TIleContentFragment.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new TIleContentFragment.ViewHolder(LayoutInflater.from(parent.getContext()),parent);
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()),parent);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull TIleContentFragment.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+            holder.picture.setImageDrawable(mPlacePictures[position % mPlacePictures.length]);
+            holder.name.setText(mPlaces[position % mPlaces.length]);
+            holder.description.setText(mPlaceDesc[position % mPlaceDesc.length]);
         }
 
         @Override

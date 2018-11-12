@@ -1,6 +1,10 @@
 package com.example.codelab_tablayout;
 
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -29,7 +35,7 @@ public class TIleContentFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
 
-        ContentAdapter adapter = new ContentAdapter();
+        ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
 
         recyclerView.setAdapter(adapter);
 
@@ -39,7 +45,7 @@ public class TIleContentFragment extends Fragment {
         recyclerView.setPadding(tilePadding, tilePadding, tilePadding, tilePadding);
 
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
         //return inflater.inflate(R.layout.item_tile, container, false);
 
@@ -48,8 +54,15 @@ public class TIleContentFragment extends Fragment {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
+        public ImageView picture;
+        public TextView name;
+
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_tile, parent, false));
+
+            picture = itemView.findViewById(R.id.tile_picture);
+            name = itemView.findViewById(R.id.tile_title);
+
         }
     }
 
@@ -57,8 +70,22 @@ public class TIleContentFragment extends Fragment {
 
         // Set numbers of List in RecyclerView.
         private static final int LENGTH = 18;
+        private final String[] mPlaces;
+        private final Drawable[] mPlacePics;
 
-        public ContentAdapter() {
+
+        public ContentAdapter(Context context) {
+
+            Resources resources = context.getResources();
+
+            mPlaces = resources.getStringArray(R.array.places);
+            TypedArray a = resources.obtainTypedArray(R.array.places_picture);
+            mPlacePics = new Drawable[a.length()];
+            for (int i = 0; i < mPlacePics.length; i++) {
+                mPlacePics[i] = a.getDrawable(i);
+            }
+            a.recycle();
+
         }
 
         @NonNull
@@ -69,6 +96,9 @@ public class TIleContentFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+            holder.picture.setImageDrawable(mPlacePics[position % mPlacePics.length]);
+            holder.name.setText(mPlaces[position % mPlacePics.length]);
 
         }
 

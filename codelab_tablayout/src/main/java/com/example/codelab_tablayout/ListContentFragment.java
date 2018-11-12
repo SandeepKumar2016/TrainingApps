@@ -1,6 +1,10 @@
 package com.example.codelab_tablayout;
 
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -30,7 +36,7 @@ public class ListContentFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
 
-        TIleContentFragment.ContentAdapter adapter = new TIleContentFragment.ContentAdapter();
+        ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
 
         recyclerView.setAdapter(adapter);
 
@@ -42,29 +48,63 @@ public class ListContentFragment extends Fragment {
         return recyclerView;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+        ImageView avatar;
+        TextView title, desc;
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_list, parent, false));
+
+            avatar = itemView.findViewById(R.id.list_avatar);
+            title = itemView.findViewById(R.id.list_title);
+            desc = itemView.findViewById(R.id.list_desc);
         }
     }
 
-    public static class ContentAdapter extends RecyclerView.Adapter<TIleContentFragment.ViewHolder>{
+    public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         // Set numbers of List in RecyclerView.
         private static final int LENGTH = 18;
+        private final String[] mPlaces;
+        private final String[] mPlaceDesc;
+        private final Drawable[] mPlaceAvatars;
 
-        public ContentAdapter() {
+
+
+
+        public ContentAdapter(Context context) {
+
+            Resources resources = context.getResources();
+
+            mPlaces = resources.getStringArray(R.array.places);
+            mPlaceDesc = resources.getStringArray(R.array.place_desc);
+
+            TypedArray a = resources.obtainTypedArray(R.array.place_avator);
+
+            mPlaceAvatars = new Drawable[a.length()];
+
+            for (int i = 0; i < mPlaceAvatars.length; i++) {
+                mPlaceAvatars[i] = a.getDrawable(i);
+            }
+            a.recycle();
         }
 
         @NonNull
         @Override
-        public TIleContentFragment.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new TIleContentFragment.ViewHolder(LayoutInflater.from(parent.getContext()),parent);
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()),parent);
         }
 
+
         @Override
-        public void onBindViewHolder(@NonNull TIleContentFragment.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+            holder.avatar.setImageDrawable(mPlaceAvatars[position % mPlaceAvatars.length]);
+
+            holder.title.setText(mPlaces[position % mPlaces.length]);
+
+            holder.desc.setText(mPlaceDesc[position % mPlaceDesc.length]);
 
         }
 
